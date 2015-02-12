@@ -11,7 +11,7 @@ elixir.extend('ngHtml2Js', function(src, output, options) {
 
     var defaultOptions = {
         moduleName: 'partialsModule',
-        prefix : '/partials'
+        prefix : ''
     };
 
     options = _.extend(defaultOptions, options);
