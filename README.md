@@ -35,10 +35,10 @@ elixir(function(mix) {
 
 ```javascript
 require('angular');
+require('angular-route');
 require('./partials');
 
 var app = angular.module('app', [
-        'app.controller',
     'ngRoute',
     'partialsModule'
 ]);
