@@ -15,7 +15,7 @@ elixir.extend('ngHtml2Js', function(src, output, options) {
     };
 
     options = _.extend(defaultOptions, options);
-    src = './' + utilities.buildGulpSrc(src, assetsDir, '**/.html');
+    src = './' + utilities.buildGulpSrc(src, assetsDir, '**/*.{htm,html}');
 
     gulp.task('ngHtml2Js', function() {
         return gulp.src(src)
@@ -24,7 +24,7 @@ elixir.extend('ngHtml2Js', function(src, output, options) {
             .pipe(gulp.dest(output || elixir.config.assetsDir + 'js/'));
     });
 
-    this.registerWatcher('ngHtml2Js', assetsDir + '/**/*.html');
+    this.registerWatcher('ngHtml2Js', assetsDir + '/**/*.{htm,html}');
 
     return this.queueTask('ngHtml2Js');
 });
