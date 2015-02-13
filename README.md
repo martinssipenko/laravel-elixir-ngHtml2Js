@@ -54,5 +54,9 @@ app.config(function($routeProvider) {
 
 ## Changelog
 
+__0.2.1))
+- Added `htm` as possible file extension for partials
+- Fixed bug with missing `*` that caused issue where no partials were being found
+
 __0.2.0__
 - Initial release
