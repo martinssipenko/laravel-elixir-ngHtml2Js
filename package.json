@@ -1,6 +1,6 @@
 {
   "name": "laravel-elixir-ng-html2js",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Laravel Elixir ngHtml2Js Extension",
   "main": "index.js",
   "scripts": {
@@ -19,10 +19,11 @@
   "license": "MIT",
   "dependencies": {
     "gulp-concat": "^2.5.2",
+    "gulp-if": "^1.2.5",
+    "gulp-minify-html": "^1.0.3",
     "gulp-ng-html2js": "^0.2.0",
-    "underscore": "^1.8.3",
     "gulp-uglify": "^1.2.0",
-    "gulp-if": "^1.2.5"
+    "underscore": "^1.8.3"
   },
   "devDependencies": {},
   "repository": {
