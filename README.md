@@ -53,6 +53,8 @@ app.config(function($routeProvider) {
 ```
 
 ## Changelog
+__0.3.0__
+- Minify html and uglify the output JS if `--production` flag is set when running gulp
 
 __0.2.1__
 - Added `htm` as possible file extension for partials
