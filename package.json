@@ -1,6 +1,6 @@
 {
   "name": "laravel-elixir-ng-html2js",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Laravel Elixir ngHtml2Js Extension",
   "main": "index.js",
   "scripts": {
