@@ -5,12 +5,10 @@ var gulp = require('gulp'),
     gulpIf = require('gulp-if'),
     concat = require('gulp-concat'),
     elixir = require('laravel-elixir'),
-    utilities = require('laravel-elixir/ingredients/commands/Utilities'),
+    config = elixir.config,
     _  = require('underscore');
 
 elixir.extend('ngHtml2Js', function(src, output, options) {
-
-    var assetsDir = this.assetsDir + 'partials/';
 
     var defaultOptions = {
         moduleName: 'partialsModule',
@@ -18,22 +16,24 @@ elixir.extend('ngHtml2Js', function(src, output, options) {
     };
 
     options = _.extend(defaultOptions, options);
-    src = './' + utilities.buildGulpSrc(src, assetsDir, '**/*.{htm,html}');
 
-    gulp.task('ngHtml2Js', function() {
-        return gulp.src(src)
+    var paths = new elixir.GulpPaths()
+        .src(src || ['**/*.{htm,html}'], config.get('assets.js.folder'))
+        .output(output || config.get('public.js.outputFolder'), 'partials.js');
+
+    new elixir.Task('ngHtml2Js', function() {
+
+        return gulp.src(paths.src.path)
             .pipe(gulpIf(elixir.config.production, minifyHtml({
                 empty: true,
                 spare: true,
                 quotes: true,
             })))
             .pipe(ngHtml2Js(options))
-            .pipe(concat('partials.js'))
+            .pipe(concat(paths.output.name))
             .pipe(gulpIf(elixir.config.production, uglify()))
-            .pipe(gulp.dest(output || elixir.config.assetsDir + 'js/'));
-    });
+            .pipe(gulp.dest(paths.output.baseDir));
 
-    this.registerWatcher('ngHtml2Js', assetsDir + '/**/*.{htm,html}');
-
-    return this.queueTask('ngHtml2Js');
+    })
+    .watch(paths.src.path);
 });
